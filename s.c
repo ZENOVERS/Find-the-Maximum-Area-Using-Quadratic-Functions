@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <Windows.h>
 #include <math.h>
+#include <ctype.h>
 
 #define 세 (((len * 1 / 2) / 2))
 #define 넓 2 * pow((((len * 1 / 2) / 2)), 2)
@@ -22,6 +23,8 @@ void CRB(void)
 
 int main()
 {
+	system("title Find the Maximum Area By Using Quadratic Functions");
+
 	float len = 0, 가로, 세로, 넓이;
 	char re; 
 
@@ -86,11 +89,15 @@ s:
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
 	printf("---풀이---\n\n");
 
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 3);
+	printf("총 울타리 길이 : %f\n\n\n", len);
+
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
 	printf("세로를 x, 가로를 (%f - 2x)라고 할 때, 우리의 넓이는 x(%f - 2x)식이 성립한다.\n", len, len);
 	printf("이차함수의 최댓값과 최솟값을 이용하여 구하면, y = %fx - 2xx 식이 도출된다.\n", len);
 	printf("이 식을 완전 제곱식을 이용하면, y = -2(xx - %fx + %f - %f)가 된다.\n", len * 1 / 2, pow((((len * 1 / 2) / 2)), 2), pow((((len * 1 / 2) / 2)), 2));
 	printf("그러면 y = -2(x - %f)(x - %f) + %f\n", 세, 세, 넓);
-	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 1);
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 13);
 	printf("\n결론적으론 x에 넣은 값이 0이 되야 하니, 세로는 %f이고, 최대 넓이는 이차함수의 최댓값인 %f이다.\n\n\n", 세, 넓);
 
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 8);
