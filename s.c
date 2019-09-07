@@ -26,9 +26,6 @@ int main()
 	system("title Find the Maximum Area By Using Quadratic Functions");
 
 	float len = 0, 가로, 세로, 넓이;
-	char re; 
-
-s:
 
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 6);
 	puts("==============(벽)=============== ");
@@ -44,13 +41,15 @@ s:
 
 	CRB();
 
-	if (len < 0)
+second:
+
+	if (len < 0 || len - (int)len != 0 || len == 0)
 	{
-		printf("음수 또는 잘못된 값이 입력됐습니다.");
-		return 0;
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 4);
+		printf("\n음수 또는 소수 등 잘못된 값이 입력됐습니다.\n\n");
+		
+		goto re;
 	}
-
-
 
 	넓이 = (len * len) / 8;
 	세로 = len / 4;
@@ -61,8 +60,11 @@ s:
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 6);
 	puts("==============(벽)=============== ");
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 11);
-	printf("l\t\t\t\tl\nl\t\t\t\tl\nl\t\t\t\tl\nl\t\t\t\tl\n\t넓이: %f \nl\t\t\t\tl\nl\t\t\t\tl\nl\t\t\t\tl\nl\t\t\t\tl\n---------------------------------\n", 넓);
+	printf("l\t\t\t\tl\nl\t\t\t\tl\nl\t\t\t\tl\nl\t\t\t\tl\nl\t\t\t\tl\nl\t\t\t\tl\nl\t\t\t\tl\nl\t\t\t\tl\nl\t\t\t\tl\n---------------------------------\n");
+	gotoxy(3, 5);
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 4);
+	printf("넓이: %f", 넓);
+	gotoxy(0, 11);
 	printf("[--------------------------------]");
 	gotoxy(12, 11);
 	printf("%f", 가);
@@ -94,24 +96,24 @@ s:
 
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
 	printf("세로를 x, 가로를 (%f - 2x)라고 할 때, 우리의 넓이는 x(%f - 2x)식이 성립한다.\n", len, len);
-	printf("이차함수의 최댓값과 최솟값을 이용하여 구하면, y = %fx - 2xx 식이 도출된다.\n", len);
-	printf("이 식을 완전 제곱식을 이용하면, y = -2(xx - %fx + %f - %f)가 된다.\n", len * 1 / 2, pow((((len * 1 / 2) / 2)), 2), pow((((len * 1 / 2) / 2)), 2));
+	printf("이차함수의 최댓값과 최솟값을 이용하여 구하면, y = %fx - 2xx 가 된다.\n", len);
+	printf("이 식을 완전 제곱식을 이용하면, y = -2(xx - %fx + %f - %f)가 도출된다.\n", len * 1 / 2, pow((((len * 1 / 2) / 2)), 2), pow((((len * 1 / 2) / 2)), 2));
 	printf("그러면 y = -2(x - %f)(x - %f) + %f\n", 세, 세, 넓);
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 13);
 	printf("\n결론적으론 x에 넣은 값이 0이 되야 하니, 세로는 %f이고, 최대 넓이는 이차함수의 최댓값인 %f이다.\n\n\n", 세, 넓);
 
+re:
+
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 8);
-	printf("다시 계산하시겠습니까? (y / n 입력): ");
-	scanf("%c", &re);
+	printf("다시 계산하시겠습니까? 값을 입력해 주세요: ");
+	scanf("%f", &len);
 
 	CRB();
 
-	if (re == 'y' || re == 'Y')
-	{
-		system("cls");
-		len = 0, 가로 = 0, 세로 = 0, 넓이 = 0, re = 0;
-		goto s;
-	}
+	system("cls");
+	가로 = 0, 세로 = 0, 넓이 = 0;
+	goto second;
+
 
 	return 0;
 }
